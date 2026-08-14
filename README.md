@@ -111,6 +111,9 @@ powershell -ExecutionPolicy Bypass -File uninstall.ps1
 2. **slot 冲突检测用 `priority` 字段,不是 `order`**:`order` 只控制渲染顺序;同 `id` 注册覆盖官方条目时,官方 `priority` 为 0,覆盖方必须用 **`priority: -1`**,否则同 id 同 priority 冲突导致插件加载失败。当前 `configurable` 与 `all` 两个替换注册已带 `priority: -1`。
 3. **子 slot 只能声明一次**:插件注册时不要用 `children` 重复声明官方已声明的子 slot(如 `settings.plugin.item`),否则 "already declared" 冲突。替换官方标签页时,子 slot 由官方声明,插件只注册条目、不写 `children`。
 4. 本目录(`C:\Users\86191\Documents\uiopt\`)是唯一源码;已用官方方式安装(`dsh plugin add`,pnpm link),**改代码直接生效**,无需任何同步脚本。若退回兼容方式(install.ps1 拷贝),才需要"改完工作区文件后跑 install.ps1、不要直接改 profile 文件"。
+5. **link 安装模式的两条特殊约定**(本机 `dsh plugin add <本目录>` 才会遇到;别人用 tgz/GitHub 安装由 pnpm 自动装依赖,不受影响):
+   - `lib/client.js` 里 `window.__ModuleLoader__.load({ id: ... })` 的 `id` **必须等于插件名 `uiopt`**,否则报 "Failed to load plugins"(模块注册不上)。
+   - 依赖 `@deepseek-ai/dsh-credentials` 装不进 link 目录:本目录 `node_modules\@deepseek-ai\dsh-credentials` 是一个 **junction**,指向 dsh 主包内现成副本。若该 junction 丢失,重建:`mklink /J "<本目录>\node_modules\@deepseek-ai\dsh-credentials" "<dsh主包>\node_modules\@deepseek-ai\dsh-credentials"`(`<dsh主包>` = `%APPDATA%\npm\node_modules\@deepseek-ai\dsh`),否则启动报 `ERR_MODULE_NOT_FOUND`。
 
 ## 版本历史
 

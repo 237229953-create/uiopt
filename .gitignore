@@ -1,6 +1,9 @@
 # 构建/分发产物(分享包用 GitHub Release 发布)
 uiopt-*.tgz
 
+# 依赖(link 安装模式下 node_modules 里是手工 junction,不提交)
+node_modules/
+
 # 系统与编辑器
 Thumbs.db
 .DS_Store

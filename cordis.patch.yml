@@ -1,0 +1,5 @@
+# uiopt(显示优化)组合包自带的挂载层:profile 安装此 bundle 后,这一层自动生效
+- insert:
+    - id: uiopt
+      name: uiopt
+      config: {}

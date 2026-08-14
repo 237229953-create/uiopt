@@ -1,0 +1,32 @@
+{
+    "name": "uiopt",
+    "version": "1.0.0",
+    "private": true,
+    "description": "显示优化 — WebUI 显示增强:余额实时查询、会话消耗、缓存命中率、提供商图标、额外插件管理",
+    "type": "module",
+    "main": "lib/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./client": "./lib/client.js",
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "lib",
+        "cordis.patch.yml"
+    ],
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        },
+        "client": {
+            "platform": "web",
+            "inject": [
+                "@deepseek-ai/dsh-client-runtime",
+                "@deepseek-ai/dsh-client-ui-model-selection"
+            ]
+        }
+    },
+    "dependencies": {
+        "@deepseek-ai/dsh-credentials": "^0.1.0-rc.6"
+    }
+}

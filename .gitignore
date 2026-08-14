@@ -1,0 +1,10 @@
+# 构建/分发产物(分享包用 GitHub Release 发布)
+uiopt-*.tgz
+
+# 系统与编辑器
+Thumbs.db
+.DS_Store
+*.log
+
+# 余额状态等运行时数据(不应入库)
+balance-state.json

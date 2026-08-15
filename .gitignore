@@ -5,6 +5,11 @@ uiopt-*.tgz
 node_modules/
 package-lock.json
 
+# 热更新运行时产物
+.update-state.json
+.update-backup-*/
+.tmp-update-*
+
 # 系统与编辑器
 Thumbs.db
 .DS_Store
